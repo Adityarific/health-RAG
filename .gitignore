@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Backend virtual environment
+backend/venv/
+
+# Environment variables
+.env
+.env.*
+
+# Node
+node_modules/
+frontend/node_modules/
+
+# Build output
+dist/
+frontend/dist/
+
+# Vector database
+chroma_db/
+backend/chroma_db/
+
+# IDE
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
