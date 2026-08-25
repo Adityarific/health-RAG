@@ -1,61 +1,39 @@
-function AnalysisPanel() {
+interface AnalysisPanelProps {
+  analysis: string;
+}
+
+function AnalysisPanel({ analysis }: AnalysisPanelProps) {
   return (
-    <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-      <h2 className="mb-6 text-2xl font-semibold">
-        🥗 Nutrition Analysis
-      </h2>
+    <div className="rounded-xl bg-white p-6 shadow">
+      <h2 className="mb-6 text-xl font-bold">🥗 Nutrition Analysis</h2>
 
-      <div className="space-y-6">
+      {!analysis ? (
+        <p className="text-gray-500">
+          Your nutrition analysis will appear here after you analyze your report.
+        </p>
+      ) : (
         <section>
-          <h3 className="mb-2 text-lg font-semibold">📋 Summary</h3>
-          <p className="text-gray-600">
-            Waiting for report analysis...
-          </p>
-        </section>
-
-        <section>
-          <h3 className="mb-2 text-lg font-semibold">
-            ⚠ Detected Deficiencies
+          <h3 className="mb-3 text-lg font-semibold">
+            📋 AI Nutrition Analysis
           </h3>
 
-          <p className="text-gray-600">
-            —
-          </p>
+          <div className="whitespace-pre-wrap rounded-lg bg-gray-50 p-4 text-gray-700">
+            {analysis}
+          </div>
         </section>
+      )}
 
-        <section>
-          <h3 className="mb-2 text-lg font-semibold">
-            🥦 Recommended Foods
-          </h3>
+      <section className="mt-6">
+        <h3 className="mb-2 text-lg font-semibold">
+          ⚕ Disclaimer
+        </h3>
 
-          <p className="text-gray-600">
-            —
-          </p>
-        </section>
-
-        <section>
-          <h3 className="mb-2 text-lg font-semibold">
-            💡 Lifestyle Tips
-          </h3>
-
-          <p className="text-gray-600">
-            —
-          </p>
-        </section>
-
-        <section>
-          <h3 className="mb-2 text-lg font-semibold">
-            ⚕ Disclaimer
-          </h3>
-
-          <p className="text-sm text-gray-500">
-            This application provides AI-generated nutritional
-            suggestions for educational purposes only.
-            Always consult a qualified healthcare professional
-            before making medical or dietary decisions.
-          </p>
-        </section>
-      </div>
+        <p className="text-sm text-gray-500">
+          This application provides AI-generated nutritional suggestions for
+          educational purposes only. Always consult a qualified healthcare
+          professional before making medical or dietary decisions.
+        </p>
+      </section>
     </div>
   );
 }
