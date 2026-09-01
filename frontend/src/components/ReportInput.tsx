@@ -1,23 +1,26 @@
 import { useState } from "react";
 import { analyzeReport } from "../services/reportApi";
-function ReportInput() {
+
+interface ReportInputProps {
+  onAnalysis: (analysis: string) => void;
+}
+
+function ReportInput({ onAnalysis }: ReportInputProps) {
   const [report, setReport] = useState("");
 
   const handleAnalyze = async () => {
     try {
-      
       const result = await analyzeReport(report);
-      console.log(result);
+
+      onAnalysis(result.analysis);
     } catch (error) {
       console.error("Error analyzing report:", error);
     }
   };
 
   return (
-    <div className=" rounded-xl border border-gray-200 bg-white p-6 shadow-sm ">
-      <h2 className="mb-4 text-2xl font-semibold">
-        📄 Medical Report
-      </h2>
+    <div className="rounded-xl bg-white p-6 shadow">
+      <h2 className="mb-2 text-xl font-bold">📄 Medical Report</h2>
 
       <p className="mb-4 text-gray-600">
         Paste your medical report below.
@@ -30,10 +33,12 @@ function ReportInput() {
         className="h-96 w-full resize-none rounded-lg border border-gray-300 p-4 outline-none focus:border-blue-500"
       />
 
-      <button onClick={handleAnalyze} className="mt-6 w-full rounded-lg bg-blue-600 py-3 font-semibold text-white transition hover:bg-blue-700">
+      <button
+        onClick={handleAnalyze}
+        className="mt-6 w-full rounded-lg bg-blue-600 py-3 font-semibold text-white transition hover:bg-blue-700"
+      >
         Analyze Report
       </button>
-      
 
       {report && (
         <div className="mt-4 rounded-lg bg-gray-100 p-4">
